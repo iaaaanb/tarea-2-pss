@@ -9,7 +9,6 @@ void comprimir(char *str) {
         return;
     }
     
-    char digits[] = "0123456789";
     char *read_ptr = str;
     char *write_ptr = str;
     
@@ -29,7 +28,7 @@ void comprimir(char *str) {
             write_ptr++;
         } else {
             // Multiple characters, write count + character
-            *write_ptr = digits[count];
+            *write_ptr = '0' + count;
             write_ptr++;
             *write_ptr = current_char;
             write_ptr++;
@@ -50,9 +49,8 @@ char *comprimido(char *str) {
         return result;
     }
     
-    char digits[] = "0123456789";
     
-    // First pass: calculate the size needed for compressed string
+    // Calculate the size needed for compressed string
     char *ptr = str;
     int compressed_size = 0;
     
@@ -75,13 +73,13 @@ char *comprimido(char *str) {
         ptr++;
     }
     
-    // Allocate exact memory needed (including null terminator)
+    // Allocate exact memory needed
     char *result = malloc(compressed_size + 1);
     if (result == NULL) {
         return NULL;
     }
     
-    // Second pass: build the compressed string
+    // Build the compressed string
     ptr = str;
     char *write_ptr = result;
     
@@ -101,7 +99,7 @@ char *comprimido(char *str) {
             write_ptr++;
         } else {
             // Multiple characters, write count + character
-            *write_ptr = digits[count];
+            *write_ptr = '0' + count;
             write_ptr++;
             *write_ptr = current_char;
             write_ptr++;

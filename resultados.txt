@@ -1,0 +1,121 @@
+Sistema operativo utilizado:
+Description:	Ubuntu 24.04.3 LTS
+Versión del núcleo de linux:
+Linux ian-thinkpad 6.14.0-29-generic #29~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Aug 14 16:52:50 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+==== run-san ====
+gcc -g -DSAN=1 -fsanitize=address -fsanitize=undefined -DSANITIZE -Wall -Werror -pedantic -std=c18 -Wno-unused-function  test-comprimir.c comprimir.c test-util.c -lm -o comprimir.bin-san
+./comprimir.bin-san
+Tests unitarios
+----- Verificando funcion comprimir ------
+Verificando con s = "CCGGAAATCAAAA"
+Verificando con s = "ABCD"
+Verificando con s = "AAaaaCCgtD"
+Verificando con s = ""
+Verificando con s = "AAAAAAAAA"
+Verificando con s = "abbbbbbaabbbbbbbbbaaab"
+Verificando con s = "abfffffffff"
+----- Verificando funcion comprimido ------
+Verificando con s = "CCGGAAATCAAAA"
+Verificando con s = "ABCD"
+Verificando con s = "AAaaaCCgtD"
+Verificando con s = ""
+Verificando con s = "AAAAAAAAA"
+Verificando con s = "abbbbbbaabbbbbbbbbaaab"
+Verificando con s = "abfffffffff"
+Aprobado
+Tests masivos
+------------------------------------------
+Benchmark de comprimir
+--------------------------------------------
+Verificando la correctitud de los resultados de comprimir
+Ejecucion string enorme
+Tiempo de cpu usado por su version: 5768 milisegundos
+------------------------------------------
+Benchmark de comprimidos
+--------------------------------------------
+Verificando la correctitud de los resultados de comprimido
+Ejecucion string enorme
+Tiempo de cpu usado por su version: 7951 milisegundos
+Aprobado
+Felicitaciones: aprobo los tests de este modo de ejecucion
+==== run-g ====
+gcc -g -Wall -Werror -pedantic -std=c18 -Wno-unused-function  test-comprimir.c comprimir.c test-util.c -lm -o comprimir.bin-g
+./comprimir.bin-g
+Tests unitarios
+----- Verificando funcion comprimir ------
+Verificando con s = "CCGGAAATCAAAA"
+Verificando con s = "ABCD"
+Verificando con s = "AAaaaCCgtD"
+Verificando con s = ""
+Verificando con s = "AAAAAAAAA"
+Verificando con s = "abbbbbbaabbbbbbbbbaaab"
+Verificando con s = "abfffffffff"
+----- Verificando funcion comprimido ------
+Verificando con s = "CCGGAAATCAAAA"
+Verificando con s = "ABCD"
+Verificando con s = "AAaaaCCgtD"
+Verificando con s = ""
+Verificando con s = "AAAAAAAAA"
+Verificando con s = "abbbbbbaabbbbbbbbbaaab"
+Verificando con s = "abfffffffff"
+Aprobado
+Tests masivos
+------------------------------------------
+Benchmark de comprimir
+--------------------------------------------
+Verificando la correctitud de los resultados de comprimir
+Ejecucion string enorme
+Tiempo de cpu usado por su version: 3026 milisegundos
+------------------------------------------
+Benchmark de comprimidos
+--------------------------------------------
+Verificando la correctitud de los resultados de comprimido
+Ejecucion string enorme
+Tiempo de cpu usado por su version: 4144 milisegundos
+Aprobado
+Felicitaciones: aprobo los tests de este modo de ejecucion
+==== run ====
+gcc -O -DOPT=1 -Wall -Werror -pedantic -std=c18 -Wno-unused-function  test-comprimir.c comprimir.c test-util.c -lm -o comprimir.bin
+Midiendo cuanto demora la solucion del profesor
+rm -f tiempo-ref.txt
+chmod +x prof.ref-x86_64
+./prof.ref-x86_64 ref > /dev/null
+Tiempos de referencia =  1236 1641
+Verificando y comparando con su solucion
+./comprimir.bin 1236 1641
+Tests unitarios
+----- Verificando funcion comprimir ------
+Verificando con s = "CCGGAAATCAAAA"
+Verificando con s = "ABCD"
+Verificando con s = "AAaaaCCgtD"
+Verificando con s = ""
+Verificando con s = "AAAAAAAAA"
+Verificando con s = "abbbbbbaabbbbbbbbbaaab"
+Verificando con s = "abfffffffff"
+----- Verificando funcion comprimido ------
+Verificando con s = "CCGGAAATCAAAA"
+Verificando con s = "ABCD"
+Verificando con s = "AAaaaCCgtD"
+Verificando con s = ""
+Verificando con s = "AAAAAAAAA"
+Verificando con s = "abbbbbbaabbbbbbbbbaaab"
+Verificando con s = "abfffffffff"
+Aprobado
+------------------------------------------
+Benchmark de comprimir
+--------------------------------------------
+Verificando la correctitud de los resultados de comprimir
+Ejecucion string enorme
+Tiempo de cpu usado por su version: 1310 milisegundos
+Tiempo de la version del profesor : 1236 milisegundos
+Porcentaje de sobrecosto: 5 %
+------------------------------------------
+Benchmark de comprimidos
+--------------------------------------------
+Verificando la correctitud de los resultados de comprimido
+Ejecucion string enorme
+Tiempo de cpu usado por su version: 1663 milisegundos
+Tiempo de la version del profesor : 1641 milisegundos
+Porcentaje de sobrecosto: 1 %
+Aprobado
+Felicitaciones: aprobo los tests de este modo de ejecucion
